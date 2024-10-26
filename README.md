@@ -8,10 +8,6 @@ Este projeto é um sistema de controle de vendas desenvolvido com Spring Boot (b
 - `frontend/`: Código-fonte do React
 - `docker-compose.yml`: Arquivo para orquestração dos serviços
 
-## Pré-requisitos
-
-- Docker e Docker Compose instalados.
-
 ## Stack Utilizada
 
 - Java 17
