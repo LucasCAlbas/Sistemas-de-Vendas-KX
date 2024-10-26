@@ -2,6 +2,3 @@
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 }
 
-@Repository
-public interface VendaRepository extends JpaRepository<Venda, Long> {
-}
