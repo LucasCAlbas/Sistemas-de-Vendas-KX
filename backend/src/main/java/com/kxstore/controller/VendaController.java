@@ -1,3 +1,12 @@
+package com.kxstore.controller;
+
+import com.kxstore.model.Venda;
+import com.kxstore.repository.VendaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/vendas")
 public class VendaController {
@@ -5,26 +14,27 @@ public class VendaController {
     @Autowired
     private VendaRepository vendaRepository;
 
-    @PostMapping
-    public Venda criarVenda(@RequestBody Venda venda) {
-        return vendaRepository.save(venda);
-    }
-
     @GetMapping
-    public List<Venda> listarVendas() {
+    public List<Venda> getAllVendas() {
         return vendaRepository.findAll();
     }
 
+    @PostMapping
+    public Venda createVenda(@RequestBody Venda venda) {
+        return vendaRepository.save(venda);
+    }
+
     @PutMapping("/{id}")
-    public Venda atualizarVenda(@PathVariable Long id, @RequestBody Venda vendaAtualizada) {
-        Venda venda = vendaRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("Venda não encontrada"));
-        venda.setValor(vendaAtualizada.getValor());
+    public Venda updateVenda(@PathVariable Long id, @RequestBody Venda vendaDetails) {
+        Venda venda = vendaRepository.findById(id).orElseThrow();
+        venda.setCliente(vendaDetails.getCliente());
+        venda.setDataVenda(vendaDetails.getDataVenda());
+        venda.setValorTotal(vendaDetails.getValorTotal());
         return vendaRepository.save(venda);
     }
 
     @DeleteMapping("/{id}")
-    public void deletarVenda(@PathVariable Long id) {
+    public void deleteVenda(@PathVariable Long id) {
         vendaRepository.deleteById(id);
     }
 }
