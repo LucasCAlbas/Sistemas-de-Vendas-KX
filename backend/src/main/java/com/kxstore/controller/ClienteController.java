@@ -1,3 +1,10 @@
+package com.kxstore.controller;
+
+import com.kxstore.model.Cliente;
+import com.kxstore.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
